@@ -1,0 +1,11 @@
+{
+  "name": "aggie",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:aggie1236/aggie1236.github.io.git",
+  "author": "aggie.chen[陳艾琦] <aggie.chen@104.com.tw>",
+  "license": "MIT",
+  "dependencies": {
+    "@vue/cli": "^4.5.11"
+  }
+}
