@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div class="hello flex items-center justify-center transition-all">
+    <h1 class="font-bold text-7xl md:text-6xl border-b-4 border-white">{{ msg }}</h1>
   </div>
 </template>
 
