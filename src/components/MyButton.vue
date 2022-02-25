@@ -1,35 +1,32 @@
 <template>
-  <button class="button is-primary" @click="onClick">
-    <!-- @slot default inner button content -->
-    <slot></slot>
-  </button>
+  <div class="work relative box-border p-4 inline-block cursor-pointer">
+    <div
+      class="bg-gradient-to-br bg-white h-full w-full rounded-2xl shadow-md hover:shadow-lg flex items-center justify-center"
+    >
+      {{ name }}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'my-button',
-
+  name: "work",
+  props: {
+    name: String,
+  },
   methods: {
     onClick() {
-      /**
-       * Click event
-       *
-       * @event click
-       */
-      this.$emit('click')
-    }
-  }
-}
+      this.$emit("onClick");
+    },
+  },
+};
 </script>
 
 <style scoped>
-button {
-  border: 1px solid #eee;
-  border-radius: 3px;
-  background-color: #ffffff;
-  cursor: pointer;
-  font-size: 15pt;
-  padding: 3px 10px;
-  margin: 10px;
+.work {
+  width: 180px;
+  height: 180px;
+}
+.work > div {
 }
 </style>
