@@ -1,20 +1,23 @@
 <template>
-  <PopupContainer v-on="$listener">
-    <SwiperContainer>
+  <PopupContainer>
+    <!-- <SwiperContainer v-bind="$attrs">
+      xxx
       <slot name="content" />
-    </SwiperContainer>
+    </SwiperContainer> -->
+    <slot />
   </PopupContainer>
 </template>
 
 <script>
 import PopupContainer from "./PopupContanier.vue";
-import SwiperContainer from "./SwiperContainer.vue";
+// import SwiperContainer from "./SwiperContainer.vue";
 export default {
-  name: "work",
+  name: "popupContainer",
   components: {
     PopupContainer,
-    SwiperContainer,
+    // SwiperContainer,
   },
+  props: {},
   methods: {
     onClick() {
       this.$emit("onClick");

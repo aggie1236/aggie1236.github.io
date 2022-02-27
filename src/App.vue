@@ -48,6 +48,14 @@
     </div>
     <div class="bg-white text-left text-sm">
       <div class="container mx-auto pl-10 pr-4 py-20">
+        <div class="text-center">
+          <div
+            class="text-3xl mb-10 font-bold text-sky-700 border-b border-sky-700 inline-block"
+          >
+            Experience
+          </div>
+        </div>
+
         <div class="border-l-2 border-gray-300 pl-10">
           <div class="h-card relative mb-10 relative">
             <div
@@ -55,12 +63,12 @@
             >
               Jan. 2018 - now
             </div>
-            <div
+            <!-- <div
               @click="popupShow"
               class="float ml-2 inline-block px-6 py-1 border rounded-full cursor-pointer font-bold text-sm bg-sky-800 hover:bg-sky-600 text-white transition-colors"
             >
               Portfolio
-            </div>
+            </div> -->
             <div class="text-md mb-4">
               一零四資訊科技股份有限公司 前端工程師
             </div>
@@ -69,13 +77,6 @@
               主要使用前端框架VueJS、Vuex，因需要相容IE，仍使用Vue2版本，CSS架構是基於boostrap上，自訂使用。
             </div>
             <div class="mb-4 text-md">其餘也有維運舊系統需求使用JQuery。</div>
-            <!-- <div class="text-right mb-4">
-              <div
-                class="inline-block px-10 py-2 rounded-full cursor-pointer font-bold text-sm bg-sky-800 text-white transition-colors"
-              >
-                Detail
-              </div>
-            </div> -->
 
             <div class="mb-1 font-bold">內部系統</div>
             <div class="mb-4 text-md">
@@ -100,7 +101,7 @@
             <div
               class="border border-sky-800 text-sky-800 font-bold py-1 px-4 mb-2 text-sm inline-block text-white rounded-full"
             >
-              Apr. 2015 - Oct. 2017
+              May. 2015 - Oct. 2017
             </div>
             <div class="text-md mb-4">創鈺國際科技 網頁設計師</div>
             <div class="mb-4">
@@ -118,47 +119,71 @@
         </div>
       </div>
     </div>
-    <!-- <div class="container m-auto py-20">
-      <div>W</div>
-      <div class="">
-        <MyButton
-          v-for="item in portfolio"
-          :key="item.title"
-          :name="item.title"
-        />
+    <div class="">
+      <div class="md:flex work-cont text-white text-lg cursor-pointer">
+        <div
+          class="w-full items-center justify-center flex overflow-hidden h-52"
+          @click="openPop('job')"
+        >
+          <div class="absolute top-0 left-0 w-full h-full">
+            <img src="./assets/images/job.png" alt="" />
+          </div>
+          <div class="relative z-10">104人力銀行網站</div>
+        </div>
+        <div
+          class="w-full items-center justify-center flex overflow-hidden h-52"
+          @click="openPop('dataprotal')"
+        >
+          <div class="absolute top-0 left-0 w-full h-full">
+            <img src="./assets/images/dataprotal.png" alt="" />
+          </div>
+          <div class="relative z-10">內部權限申請表單系統</div>
+        </div>
+        <div
+          class="w-full items-center justify-center flex overflow-hidden h-52"
+          @click="openPop('chat')"
+        >
+          <div class="absolute top-0 left-0 w-full h-full">
+            <img src="./assets/images/chat.png" alt="" />
+          </div>
+          <div class="relative z-10">即時聊天室</div>
+        </div>
       </div>
-    </div> -->
-    <PopupContainer v-show="false" @close="isPopupShow = false" />
-    <PopupSwiper v-show="isPopupShow" @close="isPopupShow = false"
-      ><template v-slot:content>???</template></PopupSwiper
-    >
+    </div>
+    <PopupContainer v-show="popName" @close="popName = null">
+      <component :is="popName" />
+    </PopupContainer>
   </div>
 </template>
 
 <script>
-// import MyButton from "./components/MyButton.vue";
+import Job from "./components/Job.vue";
+import Dataprotal from "./components/Dataprotal.vue";
+import Chat from "./components/Chat.vue";
 import PopupContainer from "./components/PopupContanier.vue";
-import PopupSwiper from "./components/PopupSwiper.vue";
 export default {
   name: "App",
-  components: { PopupContainer, PopupSwiper },
+  components: { PopupContainer, Job, Dataprotal, Chat },
   data() {
     return {
       isPopupShow: false,
-      portfolio: [
-        {
-          title: "104人力銀行網站",
-          component: "",
-        },
-        {
-          title: "內部系統",
-          component: "",
-        },
-        {
-          title: "即時聊天室",
-          component: "",
-        },
-      ],
+      popName: null,
+      portfolio: {
+        104: [
+          {
+            title: "104人力銀行網站",
+            component: "job",
+          },
+          {
+            title: "內部系統",
+            component: "dataprotal",
+          },
+          {
+            title: "即時聊天室",
+            component: "chat",
+          },
+        ],
+      },
       isScroll: false,
       skills: [
         "HTML",
@@ -214,6 +239,10 @@ export default {
     popupShow() {
       this.isPopupShow = true;
     },
+    openPop(name) {
+      this.popName = name;
+      this.popupShow();
+    },
   },
 };
 </script>
@@ -225,6 +254,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #565656;
+}
+img {
+  max-width: 100%;
 }
 </style>
 
@@ -253,5 +285,28 @@ export default {
   background-color: #97c0ff;
   border: 9px solid #fff;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.work-cont > div {
+  position: relative;
+}
+.work-cont img {
+  transition: transform 0.2s;
+}
+.work-cont > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: rgba(5, 56, 89, 0.6);
+  z-index: 1;
+}
+.work-cont > div:hover img {
+  transform: scale(1.1);
+}
+.work-cont > div:hover::before {
+  background: rgba(5, 86, 119, 0.6);
 }
 </style>

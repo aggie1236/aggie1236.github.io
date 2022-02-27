@@ -17,6 +17,7 @@
 <script>
 export default {
   name: "popup",
+  props: {},
   methods: {
     onClick() {
       this.$emit("onClick");
