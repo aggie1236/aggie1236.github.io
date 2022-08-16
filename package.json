@@ -14,6 +14,7 @@
     "autoprefixer": "^9",
     "core-js": "^3.6.5",
     "postcss": "^7",
+    "prettier": "^2.7.1",
     "sass-loader": "10.1.1",
     "stylelint": "^14.5.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
@@ -33,7 +34,6 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
-    "prettier": "^2.2.1",
     "vue-cli-plugin-storybook": "~2.1.0",
     "vue-cli-plugin-tailwind": "~2.0.6"
   },
@@ -51,7 +51,13 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+        }
+      ]
+    }
   },
   "browserslist": [
     "> 1%",
